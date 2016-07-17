@@ -21,7 +21,7 @@ after_build:
 - cmd: dotnet pack -c Release -o Output
 
 artifacts:
-- path: '\Output\Release\**\*.nupkg'
+- path: '\Output\ImageOptimize.1.0.0.nupkg'
   name: Nuget Deploy
 deploy:
 - provider: NuGet
