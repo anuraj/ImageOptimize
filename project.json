@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0-*",
+  "title": "ImageOptimize",
+  "description": "A dotnet CLI tool for image optimization.",
+  "authors": [
+    "Anuraj P"
+  ],
+  "packOptions": {
+    "projectUrl": "https://github.com/anuraj/ImageOptimize"
+  },
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true,
+    "outputName": "dotnet-imgop"
+  },
+  "dependencies": {
+    "ImageProcessorCore": "1.0.0"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        }
+      },
+      "imports": "dnxcore50"
+    }
+  }
+}
