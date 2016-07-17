@@ -1,0 +1,29 @@
+version: 1.0.{build}
+os: Visual Studio 2015
+build:
+  verbosity: minimal
+install:
+- cmd: >-
+    curl -fsSL -o dotnet-dev-win-x64.latest.zip 'https://dotnetcli.blob.core.windows.net/dotnet/beta/Binaries/Latest/dotnet-dev-win-x64.latest.zip'
+    
+    endlocal
+    
+    7z x dotnet-dev-win-x64.latest.zip -aoa -oC:\projects\imageoptimize\
+build_script:
+- cmd: >-
+    cd C:\projects\imageoptimize\
+    dotnet restore
+    dotnet build
+
+after_build:
+- cmd: dnu pack --configuration Release --out Output
+
+artifacts:
+- path: '\Output\Release\**\*.nupkg'
+  name: Nuget Deploy
+deploy:
+- provider: NuGet
+  server: nuget.org
+  api_key:
+    secure: 5XsCPhzHSChTdym1nwcZps3YxhZqySNztlUeT1rWtMmvrDM+R+WzxUkrYiMLBUVs
+    skip_symbols: true
