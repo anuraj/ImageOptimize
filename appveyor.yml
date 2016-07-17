@@ -18,7 +18,7 @@ build_script:
     dotnet build
 
 after_build:
-- cmd: dnu pack --configuration Release --out Output
+- cmd: dotnet pack -c Release -o Output
 
 artifacts:
 - path: '\Output\Release\**\*.nupkg'
