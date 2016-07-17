@@ -12,7 +12,9 @@ install:
 build_script:
 - cmd: >-
     cd C:\projects\imageoptimize\
+
     dotnet restore
+    
     dotnet build
 
 after_build:
