@@ -1,44 +1,64 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using ImageProcessorCore;
+using Microsoft.Extensions.Configuration;
 
-namespace ConsoleApplication
+namespace ImageOptimize
 {
     public class Program
     {
+        public static IConfiguration Configuration { get; set; }
         public static void Main(string[] args)
         {
-            var jpgFiles = Directory.GetFiles(Directory.GetCurrentDirectory(),
-                "*.jpg", SearchOption.AllDirectories);
-            var pngFiles = Directory.GetFiles(Directory.GetCurrentDirectory(),
-                "*.png", SearchOption.AllDirectories);
-            var gifFiles = Directory.GetFiles(Directory.GetCurrentDirectory(),
-                 "*.gif", SearchOption.AllDirectories);
-            ProcessImage(jpgFiles);
-            ProcessImage(pngFiles);
-            ProcessImage(gifFiles);
-        }
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddCommandLine(args)
+                .AddJsonFile("imageOptimize.json", optional: true);
 
-        private static void ProcessImage(string[] sourceImages)
+            Configuration = builder.Build();
+
+            var imageQuality = int.Parse(Configuration["quality"] ?? "10");
+            var sourceDirectory = Configuration["sourceDirectory"];
+            if (string.IsNullOrWhiteSpace(sourceDirectory))
+            {
+                sourceDirectory = Directory.GetCurrentDirectory();
+            }
+
+            if(!Directory.Exists(sourceDirectory))
+            {
+                Directory.CreateDirectory(sourceDirectory);
+            }
+
+            var imageTypes = Configuration["imageTypes"] ?? "*.png;*.jpg;*.gif";
+
+            var types = imageTypes.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var type in types)
+            {
+                var files = GetFiles(sourceDirectory, type);
+                ProcessImage(files, imageQuality);
+            }
+        }
+        private static string[] GetFiles(string directory, string type)
         {
-            int bytesSaved = 0;
+            return Directory.GetFiles(directory, type, SearchOption.AllDirectories);
+        }
+        private static void ProcessImage(string[] sourceImages, int imageQuality)
+        {
             foreach (var sourceImage in sourceImages)
             {
+                Console.WriteLine($"Processing file : {Path.GetFileName(sourceImage)}");
                 var bytes = File.ReadAllBytes(sourceImage);
                 using (var stream = new MemoryStream(bytes))
                 {
                     var image = new Image(stream);
                     using (var ms = new MemoryStream())
                     {
-                        image.Quality = 10;
+                        image.Quality = imageQuality;
                         image.Save(ms);
                         var currentBytes = ms.ToArray();
                         ms.Flush();
                         ms.Dispose();
                         File.WriteAllBytes(sourceImage, currentBytes);
-
-                        bytesSaved += (bytes.Length - currentBytes.Length);
                     }
                 }
             }

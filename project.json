@@ -6,15 +6,18 @@
     "Anuraj P"
   ],
   "packOptions": {
-    "projectUrl": "https://github.com/anuraj/ImageOptimize"
+    "projectUrl": "https://github.com/anuraj/ImageOptimize",
+    "licenseUrl": "https://github.com/anuraj/ImageOptimize/blob/master/License.md"
   },
   "buildOptions": {
     "debugType": "portable",
     "emitEntryPoint": true,
-    "outputName": "dotnet-imgop"
+    "outputName": "dotnet-imgopt"
   },
   "dependencies": {
-    "ImageProcessorCore": "1.0.0"
+    "ImageProcessorCore": "1.0.0",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "Microsoft.Extensions.Configuration.CommandLine": "1.0.0"
   },
   "frameworks": {
     "netcoreapp1.0": {

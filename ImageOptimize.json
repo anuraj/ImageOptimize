@@ -1,0 +1,5 @@
+{
+    "sourceDirectory": "",
+    "imageTypes": "*.jpg;*.png;*.gif",
+    "quality" : "100"
+}
