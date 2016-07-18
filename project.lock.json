@@ -7023,12 +7023,11 @@
     }
   },
   "projectFileDependencyGroups": {
-    "": [
+    "": [],
+    ".NETCoreApp,Version=v1.0": [
       "ImageProcessorCore >= 1.0.0",
       "Microsoft.Extensions.Configuration.CommandLine >= 1.0.0",
-      "Microsoft.Extensions.Configuration.Json >= 1.0.0"
-    ],
-    ".NETCoreApp,Version=v1.0": [
+      "Microsoft.Extensions.Configuration.Json >= 1.0.0",
       "Microsoft.NETCore.App >= 1.0.0"
     ]
   },
