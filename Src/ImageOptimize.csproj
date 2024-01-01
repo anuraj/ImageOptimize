@@ -6,18 +6,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageId>dotnet-sprite</PackageId>
-    <Title>dotnet-sprite</Title>
+    <PackageId>dotnet-image-optimize</PackageId>
+    <Title>dotnet-image-optimize</Title>
     <Authors>anuraj</Authors>
     <Company>dotnetthoughts.net</Company>
-    <Description>A tool to generate a CSS sprite from a directory of images.</Description>
+    <Description>A dotnet CLI tool which helps you to reduce the size of the Images.</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageVersion Condition="'$(BUILD_VERSION)' != ''">$(BUILD_VERSION)</PackageVersion>
     <PackageVersion Condition="'$(BUILD_VERSION)' == ''">1.0.0</PackageVersion>
-    <RepositoryUrl>https://github.com/anuraj/dotnet-sprite</RepositoryUrl>
+    <RepositoryUrl>https://github.com/anuraj/ImageOptimize</RepositoryUrl>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackAsTool>true</PackAsTool>
-    <ToolCommandName>dotnet-sprite</ToolCommandName>
+    <ToolCommandName>dotnet-image-optimize</ToolCommandName>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <ItemGroup>
