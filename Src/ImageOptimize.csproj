@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>dotnet-sprite</PackageId>
+    <Title>dotnet-sprite</Title>
+    <Authors>anuraj</Authors>
+    <Company>dotnetthoughts.net</Company>
+    <Description>A tool to generate a CSS sprite from a directory of images.</Description>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageVersion Condition="'$(BUILD_VERSION)' != ''">$(BUILD_VERSION)</PackageVersion>
+    <PackageVersion Condition="'$(BUILD_VERSION)' == ''">1.0.0</PackageVersion>
+    <RepositoryUrl>https://github.com/anuraj/dotnet-sprite</RepositoryUrl>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>dotnet-sprite</ToolCommandName>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\Src\assets\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.2" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" NoWarn="NU5104" />
+  </ItemGroup>
+
+</Project>
